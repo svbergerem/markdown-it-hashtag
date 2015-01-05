@@ -1,0 +1,99 @@
+.
+# hashtag
+.
+<h1>hashtag</h1>
+.
+
+.
+#hashtag
+.
+<p><a class="tag" href="/tags/hashtag">#hashtag</a></p>
+.
+
+.
+#HasHTAg
+.
+<p><a class="tag" href="/tags/hashtag">#HasHTAg</a></p>
+.
+
+.
+#hash #tag
+.
+<p><a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tag">#tag</a></p>
+.
+
+.
+multiple #hash #tags in one #line
+.
+<p>multiple <a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tags">#tags</a> in one <a class="tag" href="/tags/line/">#line</a></p>
+.
+
+.
+preceeding #space
+.
+<p>preceeding <a class="tag" href="/tags/space">#space</a></p>
+.
+
+.
+missing preceeding#space
+.
+<p>missing preceeding#space</p>
+.
+
+.
+#test#tag
+.
+<p><a class="tag" href="/tags/test">#test</a>#tag</p>
+.
+
+.
+[#hashtag](http://awe.so.me)
+.
+<p><a href="http://awe.so.me">#hashtag</a></p>
+.
+
+.
+#t-a_g
+.
+<p><a class="tag" href="/tags/t">#t</a>-a_g</p>
+.
+
+.
+#_-_
+.
+<p><a class="tag" href="/tags/_">#_</a>-_</p>
+.
+
+.
+#äöüß
+.
+<p>#äöüß</p>
+.
+
+.
+#0
+.
+<p><a class="tag" href="/tags/0">#0</a></p>
+.
+
+.
+#<3
+.
+<p><a class="tag" href="/tags/<3">#<3</a></p>
+.
+
+.
+#<3 and other #hashtags
+.
+<p><a class="tag" href="/tags/<3">#<3</a> and other <a class="tag" href="/tags/hashtags">#hashtags</a></p>
+.
+
+.
+#tag1
+#tag2
+#tag3
+.
+<p><a class="tag" href="/tags/tag1">#tag1</a>
+<a class="tag" href="/tags/tag2">#tag2</a>
+<a class="tag" href="/tags/tag3">#tag3</a></p>
+.
