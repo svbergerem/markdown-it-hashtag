@@ -107,7 +107,6 @@ module.exports = function hashtag_plugin(md, options) {
     return true;
   }
 
-  // md.inline.ruler.before('text', 'hashtag', hashtag);
   md.inline.ruler.after('emphasis', 'hashtag', hashtag);
   md.renderer.rules.hashtag_open  = hashtag_open;
   md.renderer.rules.hashtag_text  = hashtag_text;
