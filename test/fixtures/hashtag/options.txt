@@ -25,7 +25,7 @@
 .
 multiple #hash #tags in one #line
 .
-<p>multiple <a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tags">#tags</a> in one <a class="tag" href="/tags/line/">#line</a></p>
+<p>multiple <a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tags">#tags</a> in one <a class="tag" href="/tags/line">#line</a></p>
 .
 
 .
