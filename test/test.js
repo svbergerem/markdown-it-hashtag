@@ -24,9 +24,7 @@ describe('markdown-it-hashtag', function () {
 
   it('accepts options', function () {
     md.use(require('../'), {
-      // TODO is this [:alnum:] in ruby?
       hashtagChar:    /[\x0080-\xFFFF\w\-]/,
-      // TODO see lib/diaspora/taggabe.rb line 29
       preceedingChar: /\s/,
       specialTags:    /<3/
     });
