@@ -35,8 +35,9 @@ modify the output of the renderer. Here is an example with default values:
 ```js
 var md = require('markdown-it')()
             .use(require('markdown-it-hashtag'),{
-              preceedingChar: /\s/, // defines allowed preceeding chars
-              hashtagChar:    /\w/  // defines allowed chars for hashtags
+              preceedingChar: /\s/, // allowed preceeding chars
+              hashtagChar:    /\w/, // allowed chars for hashtags
+              specialTags:    /<3/, // allowed special hashtags
             });
 
 md.renderer.rules.hashtag_open  = function(tokens, idx) {

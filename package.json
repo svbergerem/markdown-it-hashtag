@@ -1,0 +1,42 @@
+{
+  "name": "markdown-it-hashtag",
+  "version": "0.0.1",
+  "description": "hashtag for markdown-it markdown parser.",
+  "keywords": [
+    "markdown-it-plugin",
+    "markdown-it",
+    "markdown",
+    "hashtag",
+    "tag"
+  ],
+  "homepage": "https://github.com/svbergerem/markdown-it-hashtag",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/svbergerem/markdown-it-hashtag.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svbergerem/markdown-it-hashtag/issues"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "coveralls": "^2.11.2",
+    "eslint": "0.10.2",
+    "eslint-plugin-nodeca": "^1.0.0",
+    "istanbul": "*",
+    "lodash": "*",
+    "markdown-it": "~3.0.0",
+    "markdown-it-testgen": "~0.1.0",
+    "mocha": "*",
+    "request": "*",
+    "uglify-js": "*"
+  },
+  "dependencies": {},
+  "directories": {
+    "test": "test"
+  }
+}

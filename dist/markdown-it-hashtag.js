@@ -20,6 +20,42 @@ function hashtag_text(tokens, idx) {
 
 //////////////////////////////////////////////////////////////////////////
 
+function findHashtag(string, start, end, validChar, specialTags) {
+  var tagName, pos;
+  // we need at least one char for a tag
+  if (start + 1 > end) {
+    return null;
+  }
+
+  // check if we have special tags
+  if (typeof specialTags !== 'undefined') {
+    var match = specialTags.exec(string.slice(start + 1, end));
+    // we found a special tag
+    if (match !== null && match.index === 0) {
+      tagName = match[0];
+      pos = start + 1 + tagName.length;
+      return { tag: tagName, pos: pos };
+    }
+  }
+
+  // no special tag and no valid char -> no hashtag
+  if (!validChar.test(string.charAt(start + 1))) {
+    return null;
+  }
+
+  // there is a regular tag
+  pos = start + 1;
+  while (pos < end && validChar.test(string.charAt(pos))) {
+    pos++;
+  }
+  tagName = string.slice(start + 1, pos);
+  return { tag: tagName, pos: pos };
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
 module.exports = function hashtag_plugin(md, options) {
   function hashtag(state) {
     var tagName,
@@ -27,7 +63,8 @@ module.exports = function hashtag_plugin(md, options) {
         start = state.pos,
         pos,
         preceedingChar = /\s/,
-        hashtagChar    = /\w/;
+        hashtagChar    = /\w/,
+        specialTags;
 
     if (options) {
       if (typeof options.preceedingChar !== 'undefined') {
@@ -35,6 +72,9 @@ module.exports = function hashtag_plugin(md, options) {
       }
       if (typeof options.hashtagChar !== 'undefined') {
         hashtagChar = options.hashtagChar;
+      }
+      if (typeof options.specialTags !== 'undefined') {
+        specialTags = options.specialTags;
       }
     }
 
@@ -44,18 +84,15 @@ module.exports = function hashtag_plugin(md, options) {
     if (start > 0 && !preceedingChar.test(state.src.charAt(start - 1))) {
       return false;
     }
-    // we need at least one char for a tag
-    if (start + 1 > max || !hashtagChar.test(state.src.charAt(start + 1))) {
+
+    var result = findHashtag(state.src, start, max, hashtagChar, specialTags);
+
+    if (result === null) {
       return false;
     }
 
-    pos = start + 1;
-
-    while (pos < max && hashtagChar.test(state.src.charAt(pos))) {
-      pos++;
-    }
-
-    tagName = state.src.slice(start + 1, pos);
+    pos = result.pos;
+    tagName = result.tag;
 
     state.posMax = pos;
     state.pos = start + 1;
