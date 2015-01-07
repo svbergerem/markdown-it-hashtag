@@ -1,5 +1,7 @@
 # markdown-it-hashtag
 
+[![Build Status](https://img.shields.io/travis/svbergerem/markdown-it-hashtag/master.svg?style=flat)](https://travis-ci.org/svbergerem/markdown-it-hashtag)
+
 > hashtag (`#tag`) plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 
 `#hashtag` => `<a class="tag" href="/tags/hashtag">#hashtag</a>`
