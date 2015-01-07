@@ -17,8 +17,6 @@ function hashtag_text(tokens, idx) {
 }
 
 
-//////////////////////////////////////////////////////////////////////////
-
 function findHashtag(string, start, end, validChar, specialTags) {
   var tagName, pos;
   // we need at least one char for a tag
@@ -37,8 +35,8 @@ function findHashtag(string, start, end, validChar, specialTags) {
     }
   }
 
-  // no special tag and no valid char -> no hashtag
   if (!validChar.test(string.charAt(start + 1))) {
+    // no special tag and no valid char -> no hashtag
     return null;
   }
 
@@ -52,11 +50,8 @@ function findHashtag(string, start, end, validChar, specialTags) {
 }
 
 
-
-//////////////////////////////////////////////////////////////////////////
-
 module.exports = function hashtag_plugin(md, options) {
-  function hashtag(state) {
+  function hashtag(state, silent) {
     var tagName,
         max = state.posMax,
         start = state.pos,
@@ -79,41 +74,41 @@ module.exports = function hashtag_plugin(md, options) {
 
     if (state.src.charCodeAt(start) !== 0x23/* # */) { return false; }
     // either the tag is at the beginning of the line or
-    // there has to be a whitespace in front of the tag
+    // there has to be a preceeding char in front of the tag
     if (start > 0 && !preceedingChar.test(state.src.charAt(start - 1))) {
       return false;
     }
 
     var result = findHashtag(state.src, start, max, hashtagChar, specialTags);
 
-    if (result === null) {
-      return false;
-    }
+    if (result === null) { return false; }
 
     pos = result.pos;
     tagName = result.tag;
 
-    state.posMax = pos;
-    state.pos = start + 1;
-
-    state.push({
-      type: 'hashtag_open',
-      level: state.level++,
-      content: tagName
-    });
-    state.push({
-      type: 'hashtag_text',
-      level: state.level,
-      content: tagName
-    });
-    state.push({ type: 'hashtag_close', level: --state.level });
+    if (!silent) {
+      state.pos = start + 1;
+      state.posMax = max;
+      state.push({
+        type: 'hashtag_open',
+        level: state.level++,
+        content: tagName
+      });
+      state.push({
+        type: 'hashtag_text',
+        level: state.level,
+        content: tagName
+      });
+      state.push({ type: 'hashtag_close', level: --state.level });
+    }
 
     state.pos = pos;
     state.posMax = max;
     return true;
   }
 
-  md.inline.ruler.before('text', 'hashtag', hashtag);
+  // md.inline.ruler.before('text', 'hashtag', hashtag);
+  md.inline.ruler.after('emphasis', 'hashtag', hashtag);
   md.renderer.rules.hashtag_open  = hashtag_open;
   md.renderer.rules.hashtag_text  = hashtag_text;
   md.renderer.rules.hashtag_close = hashtag_close;

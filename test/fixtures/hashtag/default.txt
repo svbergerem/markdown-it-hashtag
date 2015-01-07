@@ -79,13 +79,13 @@ missing preceeding#space
 .
 #<3
 .
-<p><a class="tag" href="/tags/<3">#<3</a></p>
+<p>#&lt;3</p>
 .
 
 .
 #<3 and other #hashtags
 .
-<p><a class="tag" href="/tags/<3">#<3</a> and other <a class="tag" href="/tags/hashtags">#hashtags</a></p>
+<p>#&lt;3 and other <a class="tag" href="/tags/hashtags">#hashtags</a></p>
 .
 
 .
