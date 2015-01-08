@@ -152,9 +152,6 @@ there is no # hashtag
 <p>there is no # hashtag</p>
 .
 
-
-
-ignores # at the end of a line
 .
 still no #
 .

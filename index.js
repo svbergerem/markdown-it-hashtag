@@ -111,4 +111,33 @@ module.exports = function hashtag_plugin(md, options) {
   md.renderer.rules.hashtag_open  = hashtag_open;
   md.renderer.rules.hashtag_text  = hashtag_text;
   md.renderer.rules.hashtag_close = hashtag_close;
+
+  // TODO check if there is a cleaner solution
+  // make sure there are no hashtag links inside of links
+  md.core.ruler.push('remove_hashtag_inside_links', function(state) {
+    var i, blkIdx, inlineTokens, openLink;
+    for (blkIdx = 0; blkIdx < state.tokens.length; blkIdx++) {
+      if (state.tokens[blkIdx].type !== 'inline') { continue; }
+      openLink = false;
+      inlineTokens = state.tokens[blkIdx].children;
+
+      for (i = 0; i < inlineTokens.length; i++) {
+        if (inlineTokens[i].type === 'link_open') { openLink = true; }
+        if (inlineTokens[i].type === 'link_close') { openLink = false; }
+        if (inlineTokens[i].type === 'hashtag_open' && openLink) {
+          inlineTokens[i].type = 'text';
+          inlineTokens[i].content = '';
+        }
+        if (inlineTokens[i].type === 'hashtag_text' && openLink) {
+          inlineTokens[i].type = 'text';
+          inlineTokens[i].content = '#' + inlineTokens[i].content;
+          inlineTokens[i].level--;
+        }
+        if (inlineTokens[i].type === 'hashtag_close' && openLink) {
+          inlineTokens[i].type = 'text';
+          inlineTokens[i].content = '';
+        }
+      }
+    }
+  });
 };
