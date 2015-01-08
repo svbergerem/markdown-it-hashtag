@@ -20,7 +20,7 @@ function hashtag_text(tokens, idx) {
 function findHashtag(string, start, end, validChar, specialTags) {
   var tagName, pos;
   // we need at least one char for a tag
-  if (start + 1 > end) {
+  if (start + 1 >= end) {
     return null;
   }
 

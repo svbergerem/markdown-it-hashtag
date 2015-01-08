@@ -1,6 +1,8 @@
 # markdown-it-hashtag
 
 [![Build Status](https://img.shields.io/travis/svbergerem/markdown-it-hashtag/master.svg?style=flat)](https://travis-ci.org/svbergerem/markdown-it-hashtag)
+[![Coverage Status](https://img.shields.io/coveralls/svbergerem/markdown-it-hashtag/master.svg?style=flat)](https://coveralls.io/r/svbergerem/markdown-it-hashtag?branch=master)
+[![npm version](https://img.shields.io/npm/v/markdown-it-hashtag.svg?style=flat)](https://npmjs.com/package/markdown-it-hashtag)
 
 > hashtag (`#tag`) plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 

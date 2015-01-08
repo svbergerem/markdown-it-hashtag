@@ -164,6 +164,12 @@ still no #
 <div>#</div>
 .
 
+.
+##notag
+.
+<p>##notag</p>
+.
+
 
 
 respects inline code
