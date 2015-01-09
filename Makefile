@@ -35,5 +35,7 @@ browserify:
 		--preamble "/*! ${NPM_PACKAGE} ${NPM_VERSION} ${GITHUB_PROJ} @license MIT */" \
 		> dist/markdown-it-hashtag.min.js
 
+release: coverage browserify
+
 .PHONY: lint test coverage
 .SILENT: lint test

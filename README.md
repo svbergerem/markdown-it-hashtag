@@ -10,7 +10,7 @@
 
 ## Install
 
-node.js, browser:
+node.js, bower:
 
 ```bash
 npm install markdown-it-hashtag --save
