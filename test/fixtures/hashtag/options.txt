@@ -61,7 +61,7 @@ missing preceeding#space
 .
 #_-_
 .
-<p><a class="tag" href="/tags/_-_">#_-_</a></p>
+<p>#<em>-</em></p>
 .
 
 .

@@ -90,15 +90,15 @@ doesn't break links
 
 doesn't break images
 .
-![#hashtag](http://awe.so.me/image.gif)
+![a #hashtag](http://awe.so.me/image.gif)
 .
-<p><img src="http://awe.so.me/image.gif" alt=""></p>
+<p><img src="http://awe.so.me/image.gif" alt="a #hashtag"></p>
 .
 
 .
-![image](http://awe.so.me/image.gif "#title")
+![image](http://awe.so.me/image.gif "a #title")
 .
-<p><img src="http://awe.so.me/image.gif" alt="image" title="#title"></p>
+<p><img src="http://awe.so.me/image.gif" alt="image" title="a #title"></p>
 .
 
 
@@ -113,7 +113,7 @@ doesn't accept all characters
 .
 #_-_
 .
-<p><a class="tag" href="/tags/_">#_</a>-_</p>
+<p>#<em>-</em></p>
 .
 
 .

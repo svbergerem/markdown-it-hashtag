@@ -33,15 +33,16 @@ package system, module will add itself globally as `window.markdownitHashtag`.
 
 #### Advanced
 
-You can specify the allowed chars for hashtags and the preceeding chars. You can also
+You can specify the RegExp for hashtags and specify the allowed preceding content. You can also
 modify the output of the renderer. Here is an example with default values:
 
 ```js
 var md = require('markdown-it')()
             .use(require('markdown-it-hashtag'),{
-              preceedingChar: /\s/, // allowed preceeding chars
-              hashtagChar:    /\w/, // allowed chars for hashtags
-              specialTags:    /<3/, // allowed special hashtags
+              // pattern for hashtags with normal string escape rules
+              hashtagRegExp: '\\w+',
+              // pattern for allowed preceding content
+              preceding:     '^|\\s'
             });
 
 md.renderer.rules.hashtag_open  = function(tokens, idx) {

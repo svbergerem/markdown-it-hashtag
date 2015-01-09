@@ -24,9 +24,8 @@ describe('markdown-it-hashtag', function () {
 
   it('accepts options', function () {
     md.use(require('../'), {
-      hashtagChar:    /[\x0080-\xFFFF\w\-]/,
-      preceedingChar: /\s/,
-      specialTags:    /<3/
+      hashtagRegExp: '[\\x0080-\\xFFFF\\w\\-]+|<3',
+      preceding:     '^|\\s'
     });
     generate(path.join(__dirname, 'fixtures/hashtag/options.txt'), md);
   });
