@@ -1,3 +1,7 @@
+# 0.2.1
+
+* Update files in /dist
+
 # 0.2.0
 
 * Rewrite to prevent hashtags being rendered inside of link texts
