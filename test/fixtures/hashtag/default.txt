@@ -11,7 +11,7 @@ creates links
 .
 #hashtag
 .
-<p><a class="tag" href="/tags/hashtag">#hashtag</a></p>
+<p><a href="/tags/hashtag" class="tag">#hashtag</a></p>
 .
 
 
@@ -20,7 +20,7 @@ uses the lowercase tag for the link
 .
 #HasHTAg
 .
-<p><a class="tag" href="/tags/hashtag">#HasHTAg</a></p>
+<p><a href="/tags/hashtag" class="tag">#HasHTAg</a></p>
 .
 
 
@@ -29,19 +29,19 @@ accepts multiple tags per line
 .
 #hash #tag
 .
-<p><a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tag">#tag</a></p>
+<p><a href="/tags/hash" class="tag">#hash</a> <a href="/tags/tag" class="tag">#tag</a></p>
 .
 
 .
 multiple #hash #tags in one #line
 .
-<p>multiple <a class="tag" href="/tags/hash">#hash</a> <a class="tag" href="/tags/tags">#tags</a> in one <a class="tag" href="/tags/line">#line</a></p>
+<p>multiple <a href="/tags/hash" class="tag">#hash</a> <a href="/tags/tags" class="tag">#tags</a> in one <a href="/tags/line" class="tag">#line</a></p>
 .
 
 .
 preceeding #space
 .
-<p>preceeding <a class="tag" href="/tags/space">#space</a></p>
+<p>preceeding <a href="/tags/space" class="tag">#space</a></p>
 .
 
 
@@ -56,7 +56,7 @@ missing preceeding#space
 .
 #test#tag
 .
-<p><a class="tag" href="/tags/test">#test</a>#tag</p>
+<p><a href="/tags/test" class="tag">#test</a>#tag</p>
 .
 
 
@@ -107,7 +107,7 @@ doesn't accept all characters
 .
 #t-a_g
 .
-<p><a class="tag" href="/tags/t">#t</a>-a_g</p>
+<p><a href="/tags/t" class="tag">#t</a>-a_g</p>
 .
 
 .
@@ -131,7 +131,7 @@ doesn't accept all characters
 .
 #<3 and other #hashtags
 .
-<p>#&lt;3 and other <a class="tag" href="/tags/hashtags">#hashtags</a></p>
+<p>#&lt;3 and other <a href="/tags/hashtags" class="tag">#hashtags</a></p>
 .
 
 
@@ -140,7 +140,7 @@ also works with only one char
 .
 #0
 .
-<p><a class="tag" href="/tags/0">#0</a></p>
+<p><a href="/tags/0" class="tag">#0</a></p>
 .
 
 
@@ -196,7 +196,7 @@ don't render #hashtags in code blocks
 #tag2
 #tag3
 .
-<p><a class="tag" href="/tags/tag1">#tag1</a>
-<a class="tag" href="/tags/tag2">#tag2</a>
-<a class="tag" href="/tags/tag3">#tag3</a></p>
+<p><a href="/tags/tag1" class="tag">#tag1</a>
+<a href="/tags/tag2" class="tag">#tag2</a>
+<a href="/tags/tag3" class="tag">#tag3</a></p>
 .

@@ -6,7 +6,7 @@
 
 > hashtag (`#tag`) plugin for [markdown-it](https://github.com/markdown-it/markdown-it) markdown parser.
 
-`#hashtag` => `<a class="tag" href="/tags/hashtag">#hashtag</a>`
+`#hashtag` => `<a href="/tags/hashtag" class="tag">#hashtag</a>`
 
 ## Install
 
@@ -25,7 +25,7 @@ bower install markdown-it-hashtag --save
 var md = require('markdown-it')()
             .use(require('markdown-it-hashtag'));
 
-md.render('#hashtag'); // => '<p><a class="tag" href="/tags/hashtag">#hashtag</a></p>'
+md.render('#hashtag'); // => '<p><a href="/tags/hashtag" class="tag">#hashtag</a></p>'
 ```
 
 _Differences in browser._ If you load the script directly into the page, without
@@ -47,7 +47,7 @@ var md = require('markdown-it')()
 
 md.renderer.rules.hashtag_open  = function(tokens, idx) {
   var tagName = tokens[idx].content.toLowerCase(); 
-  return '<a class="tag" href="/tags/' + tagName + '">';
+  return '<a href="/tags/' + tagName + '" class="tag">';
 }
 
 md.renderer.rules.hashtag_text  = function(tokens, idx) {
@@ -56,7 +56,7 @@ md.renderer.rules.hashtag_text  = function(tokens, idx) {
 
 md.renderer.rules.hashtag_close = function { return '</a>'; }
 
-md.render('#hashtag'); // => '<p><a class="tag" href="/tags/hashtag">#hashtag</a></p>'
+md.render('#hashtag'); // => '<p><a href="/tags/hashtag" class="tag">#hashtag</a></p>'
 ```
 
 ## License
