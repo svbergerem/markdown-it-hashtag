@@ -1,3 +1,7 @@
+# HEAD
+
+* When words recur only render those that are hashtags
+
 # 0.2.2
 
 * Move the class attribute to the end

@@ -94,13 +94,13 @@ module.exports = function hashtag_plugin(md, options) {
         for (m = 0; m < matches.length; m++) {
           tagName = matches[m].split('#', 2)[1];
 
-          pos = text.indexOf(tagName);
+          pos = text.indexOf('#' + tagName);
 
           if (pos > 0) {
             nodes.push({
               type: 'text',
               // char at pos-1 is '#'
-              content: text.slice(0, pos - 1),
+              content: text.slice(0, pos),
               level: level
             });
           }
@@ -118,7 +118,7 @@ module.exports = function hashtag_plugin(md, options) {
             type: 'hashtag_close',
             level: --level
           });
-          text = text.slice(pos + tagName.length);
+          text = text.slice(pos + 1 + tagName.length);
         }
 
         if (text.length > 0) {
