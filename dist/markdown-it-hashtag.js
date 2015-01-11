@@ -1,4 +1,4 @@
-/*! markdown-it-hashtag 0.2.2 https://github.com/svbergerem/markdown-it-hashtag @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.markdownitHashtag=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*! markdown-it-hashtag 0.2.3 https://github.com/svbergerem/markdown-it-hashtag @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.markdownitHashtag=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // Process #hashtag
 
 'use strict';
@@ -95,13 +95,13 @@ module.exports = function hashtag_plugin(md, options) {
         for (m = 0; m < matches.length; m++) {
           tagName = matches[m].split('#', 2)[1];
 
-          pos = text.indexOf(tagName);
+          pos = text.indexOf('#' + tagName);
 
           if (pos > 0) {
             nodes.push({
               type: 'text',
               // char at pos-1 is '#'
-              content: text.slice(0, pos - 1),
+              content: text.slice(0, pos),
               level: level
             });
           }
@@ -119,7 +119,7 @@ module.exports = function hashtag_plugin(md, options) {
             type: 'hashtag_close',
             level: --level
           });
-          text = text.slice(pos + tagName.length);
+          text = text.slice(pos + 1 + tagName.length);
         }
 
         if (text.length > 0) {

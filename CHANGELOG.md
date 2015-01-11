@@ -1,4 +1,4 @@
-# HEAD
+# 0.2.3
 
 * When words recur only render those that are hashtags
 

@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-hashtag",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "hashtag for markdown-it markdown parser.",
   "keywords": [
     "markdown-it-plugin",

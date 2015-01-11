@@ -1,7 +1,7 @@
 {
   "name": "markdown-it-hashtag",
   "main": "dist/markdown-it-hashtag.js",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "hashtag for markdown-it markdown parser",
   "keywords": [
     "markdown-it-plugin",
