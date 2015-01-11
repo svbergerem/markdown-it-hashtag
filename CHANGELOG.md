@@ -1,3 +1,9 @@
+# 0.2.2
+
+* Move the class attribute to the end
+* Escape html in the tag
+* Bump markdown-it
+
 # 0.2.1
 
 * Update files in /dist

@@ -24,6 +24,7 @@ function isLinkClose(str) { return /^<\/a\s*>/i.test(str); }
 module.exports = function hashtag_plugin(md, options) {
 
   var arrayReplaceAt = md.utils.arrayReplaceAt;
+  var escapeHtml = md.utils.escapeHtml;
 
   function hashtag(state) {
     var i, j, l, m,
@@ -110,7 +111,7 @@ module.exports = function hashtag_plugin(md, options) {
           });
           nodes.push({
             type: 'hashtag_text',
-            content: tagName,
+            content: escapeHtml(tagName),
             level: level
           });
           nodes.push({
