@@ -111,12 +111,6 @@ doesn't accept all characters
 .
 
 .
-#_-_
-.
-<p>#<em>-</em></p>
-.
-
-.
 #äöüß
 .
 <p>#äöüß</p>

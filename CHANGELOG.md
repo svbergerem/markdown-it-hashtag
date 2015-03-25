@@ -1,3 +1,7 @@
+# 0.3.0
+
+* Use markdown-it 4
+
 # 0.2.3
 
 * When words recur only render those that are hashtags

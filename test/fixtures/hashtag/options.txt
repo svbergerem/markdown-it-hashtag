@@ -59,12 +59,6 @@ missing preceeding#space
 .
 
 .
-#_-_
-.
-<p>#<em>-</em></p>
-.
-
-.
 #äöüß
 .
 <p><a href="/tags/äöüß" class="tag">#äöüß</a></p>

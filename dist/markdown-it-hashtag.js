@@ -1,4 +1,4 @@
-/*! markdown-it-hashtag 0.2.3 https://github.com/svbergerem/markdown-it-hashtag @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.markdownitHashtag=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+/*! markdown-it-hashtag 0.3.0 https://github.com/svbergerem/markdown-it-hashtag @license MIT */!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.markdownitHashtag=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 // Process #hashtag
 
 'use strict';
@@ -24,73 +24,80 @@ function isLinkClose(str) { return /^<\/a\s*>/i.test(str); }
 
 module.exports = function hashtag_plugin(md, options) {
 
-  var arrayReplaceAt = md.utils.arrayReplaceAt;
-  var escapeHtml = md.utils.escapeHtml;
+  var arrayReplaceAt = md.utils.arrayReplaceAt,
+      escapeHtml = md.utils.escapeHtml,
+      regex,
+      hashtagRegExp = '\\w+',
+      preceding     = '^|\\s';
+
+  if (options) {
+    if (typeof options.preceding !== 'undefined') {
+      preceding = options.preceding;
+    }
+    if (typeof options.hashtagRegExp !== 'undefined') {
+      hashtagRegExp = options.hashtagRegExp;
+    }
+  }
+
+  regex = new RegExp('(' + preceding + ')#(' + hashtagRegExp + ')', 'g');
+
 
   function hashtag(state) {
     var i, j, l, m,
         tagName,
+        currentToken,
         token,
         tokens,
+        Token = state.Token,
         blockTokens = state.tokens,
         htmlLinkLevel,
         matches,
         text,
         nodes,
         pos,
-        level,
-        regex,
-        preceding     = '^|\\s',
-        hashtagRegExp = '\\w+';
-
-    if (options) {
-      if (typeof options.preceding !== 'undefined') {
-        preceding = options.preceding;
-      }
-      if (typeof options.hashtagRegExp !== 'undefined') {
-        hashtagRegExp = options.hashtagRegExp;
-      }
-    }
-
-    regex = new RegExp('(' + preceding + ')#(' + hashtagRegExp + ')', 'g');
+        level;
 
     for (j = 0, l = blockTokens.length; j < l; j++) {
       if (blockTokens[j].type !== 'inline') { continue; }
+
       tokens = blockTokens[j].children;
+
       htmlLinkLevel = 0;
 
       for (i = tokens.length - 1; i >= 0; i--) {
-        token = tokens[i];
+        currentToken = tokens[i];
 
         // skip content of markdown links
-        if (token.type === 'link_close') {
+        if (currentToken.type === 'link_close') {
           i--;
-          while (tokens[i].level !== token.level && tokens[i].type !== 'link_open') {
+          while (tokens[i].level !== currentToken.level && tokens[i].type !== 'link_open') {
             i--;
           }
           continue;
         }
 
         // skip content of html links
-        if (token.type === 'html_inline') {
+        if (currentToken.type === 'html_inline') {
           // we are going backwards, so isLinkOpen shows end of link
-          if (isLinkOpen(token.content) && htmlLinkLevel > 0) {
+          if (isLinkOpen(currentToken.content) && htmlLinkLevel > 0) {
             htmlLinkLevel--;
           }
-          if (isLinkClose(token.content)) {
+          if (isLinkClose(currentToken.content)) {
             htmlLinkLevel++;
           }
         }
         if (htmlLinkLevel > 0) { continue; }
 
-        if (token.type !== 'text') { continue; }
+        if (currentToken.type !== 'text') { continue; }
 
         // find hashtags
-        text = token.content;
+        text = currentToken.content;
         matches = text.match(regex);
+
         if (matches === null) { continue; }
+
         nodes = [];
-        level = token.level;
+        level = currentToken.level;
 
         for (m = 0; m < matches.length; m++) {
           tagName = matches[m].split('#', 2)[1];
@@ -98,41 +105,38 @@ module.exports = function hashtag_plugin(md, options) {
           pos = text.indexOf('#' + tagName);
 
           if (pos > 0) {
-            nodes.push({
-              type: 'text',
-              // char at pos-1 is '#'
-              content: text.slice(0, pos),
-              level: level
-            });
+            token         = new Token('text', '', 0);
+            token.content = text.slice(0, pos);
+            token.level   = level;
+            nodes.push(token);
           }
-          nodes.push({
-            type: 'hashtag_open',
-            content: tagName,
-            level: level++
-          });
-          nodes.push({
-            type: 'hashtag_text',
-            content: escapeHtml(tagName),
-            level: level
-          });
-          nodes.push({
-            type: 'hashtag_close',
-            level: --level
-          });
+
+          token         = new Token('hashtag_open', '', 1);
+          token.content = tagName;
+          token.level   = level++;
+          nodes.push(token);
+
+          token         = new Token('hashtag_text', '', 0);
+          token.content = escapeHtml(tagName);
+          token.level   = level;
+          nodes.push(token);
+
+          token         = new Token('hashtag_close', '', -1);
+          token.level   = --level;
+          nodes.push(token);
+
           text = text.slice(pos + 1 + tagName.length);
         }
 
         if (text.length > 0) {
-          nodes.push({
-            type: 'text',
-            content: text,
-            level: state.level
-          });
+          token         = new Token('text', '', 0);
+          token.content = text;
+          token.level   = level;
+          nodes.push(token);
         }
 
         // replace current node
-        tokens = arrayReplaceAt(tokens, i, nodes);
-        blockTokens[j].children = tokens;
+        blockTokens[j].children = tokens = arrayReplaceAt(tokens, i, nodes);
       }
     }
   }
