@@ -1,20 +1,15 @@
 Should parse nested quotes:
-
 .
 "foo 'bar' baz"
-.
-<p>“foo ‘bar’ baz”</p>
-.
 
-.
 'foo 'bar' baz'
 .
+<p>“foo ‘bar’ baz”</p>
 <p>‘foo ‘bar’ baz’</p>
 .
 
 
 Should not overlap quotes:
-
 .
 'foo "bar' baz"
 .
@@ -23,7 +18,6 @@ Should not overlap quotes:
 
 
 Should match quotes on the same level:
-
 .
 "foo *bar* baz"
 .
@@ -31,26 +25,34 @@ Should match quotes on the same level:
 .
 
 
-Should not match quotes on different levels:
+Should handle adjacent nested quotes:
+.
+'"double in single"'
 
+"'single in double'"
+.
+<p>‘“double in single”’</p>
+<p>“‘single in double’”</p>
+.
+
+
+
+Should not match quotes on different levels:
 .
 *"foo* bar"
 
 "foo *bar"*
+
+*"foo* bar *baz"*
 .
 <p><em>&quot;foo</em> bar&quot;</p>
 <p>&quot;foo <em>bar&quot;</em></p>
-.
-
-.
-*"foo* bar *baz"*
-.
 <p><em>&quot;foo</em> bar <em>baz&quot;</em></p>
 .
 
 
-Should try and find matching quote in this case:
 
+Should try and find matching quote in this case:
 .
 "foo "bar 'baz"
 .
@@ -59,16 +61,14 @@ Should try and find matching quote in this case:
 
 
 Should not touch 'inches' in quotes:
-
 .
-"Monitor 21""
+"Monitor 21"" and "Monitor""
 .
-<p>“Monitor 21&quot;”</p>
+<p>“Monitor 21&quot;” and “Monitor”&quot;</p>
 .
 
 
 Should render an apostrophe as a rsquo:
-
 .
 This isn't and can't be the best approach to implement this...
 .
@@ -77,9 +77,16 @@ This isn't and can't be the best approach to implement this...
 
 
 Apostrophe could end the word, that's why original smartypants replaces all of them as rsquo:
-
 .
 users' stuff
 .
 <p>users’ stuff</p>
+.
+
+Quotes between punctuation chars:
+
+.
+"(hai)".
+.
+<p>“(hai)”.</p>
 .
