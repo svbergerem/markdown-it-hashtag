@@ -1,21 +1,31 @@
+doesn't break headings
 .
 # hashtag
 .
 <h1>hashtag</h1>
 .
 
+
+
+creates links
 .
 #hashtag
 .
 <p><a href="/tags/hashtag" class="tag">#hashtag</a></p>
 .
 
+
+
+uses the lowercase tag for the link
 .
 #HasHTAg
 .
 <p><a href="/tags/hashtag" class="tag">#HasHTAg</a></p>
 .
 
+
+
+accepts multiple tags per line
 .
 #hash #tag
 .
@@ -34,6 +44,9 @@ preceeding #space
 <p>preceeding <a href="/tags/space" class="tag">#space</a></p>
 .
 
+
+
+requires a preceeding space
 .
 missing preceeding#space
 .
@@ -46,12 +59,51 @@ missing preceeding#space
 <p><a href="/tags/test" class="tag">#test</a>#tag</p>
 .
 
+
+
+doesn't break links
 .
 [#hashtag](http://awe.so.me)
 .
 <p><a href="http://awe.so.me">#hashtag</a></p>
 .
 
+.
+[there is a #hashtag](http://awe.so.me)
+.
+<p><a href="http://awe.so.me">there is a #hashtag</a></p>
+.
+
+.
+[link](http://awe.so.me "#title")
+.
+<p><a href="http://awe.so.me" title="#title">link</a></p>
+.
+
+.
+[link](http://awe.so.me "there is a #title")
+.
+<p><a href="http://awe.so.me" title="there is a #title">link</a></p>
+.
+
+
+
+doesn't break images
+.
+![a #hashtag](http://awe.so.me/image.gif)
+.
+<p><img src="http://awe.so.me/image.gif" alt="a #hashtag"></p>
+.
+
+.
+![image](http://awe.so.me/image.gif "a #title")
+.
+<p><img src="http://awe.so.me/image.gif" alt="image" title="a #title"></p>
+.
+
+
+
+doesn't accept all characters
 .
 #t-a_g
 .
@@ -62,12 +114,6 @@ missing preceeding#space
 #äöüß
 .
 <p><a href="/tags/äöüß" class="tag">#äöüß</a></p>
-.
-
-.
-#0
-.
-<p><a href="/tags/0" class="tag">#0</a></p>
 .
 
 .
@@ -82,6 +128,66 @@ missing preceeding#space
 <p><a href="/tags/<3" class="tag">#&lt;3</a> and other <a href="/tags/hashtags" class="tag">#hashtags</a></p>
 .
 
+
+
+also works with only one char
+.
+#0
+.
+<p><a href="/tags/0" class="tag">#0</a></p>
+.
+
+
+
+ignores empty hashtags
+.
+there is no # hashtag
+.
+<p>there is no # hashtag</p>
+.
+
+.
+still no #
+.
+<p>still no #</p>
+.
+
+.
+<div>#</div>
+.
+<div>#</div>
+.
+
+.
+##notag
+.
+<p>##notag</p>
+.
+
+
+
+respects inline code
+.
+`don't render #hashtags in inline code`
+.
+<p><code>don't render #hashtags in inline code</code></p>
+.
+
+
+
+respects code blocks
+.
+```
+don't render #hashtags in code blocks
+```
+.
+<pre><code>don't render #hashtags in code blocks
+</code></pre>
+.
+
+
+
+
 .
 #tag1
 #tag2
@@ -90,4 +196,16 @@ missing preceeding#space
 <p><a href="/tags/tag1" class="tag">#tag1</a>
 <a href="/tags/tag2" class="tag">#tag2</a>
 <a href="/tags/tag3" class="tag">#tag3</a></p>
+.
+
+.
+hashtag #hashtag
+.
+<p>hashtag <a href="/tags/hashtag" class="tag">#hashtag</a></p>
+.
+
+.
+not a#hashtag #hashtag
+.
+<p>not a#hashtag <a href="/tags/hashtag" class="tag">#hashtag</a></p>
 .

@@ -203,3 +203,9 @@ hashtag #hashtag
 .
 <p>hashtag <a href="/tags/hashtag" class="tag">#hashtag</a></p>
 .
+
+.
+not a#hashtag #hashtag
+.
+<p>not a#hashtag <a href="/tags/hashtag" class="tag">#hashtag</a></p>
+.

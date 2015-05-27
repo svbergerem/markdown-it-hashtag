@@ -101,7 +101,10 @@ module.exports = function hashtag_plugin(md, options) {
         for (m = 0; m < matches.length; m++) {
           tagName = matches[m].split('#', 2)[1];
 
-          pos = text.indexOf('#' + tagName);
+          // find the beginning of the matched text
+          pos = text.indexOf(matches[m]);
+          // find the beginning of the hashtag
+          pos = text.indexOf('#' + tagName, pos);
 
           if (pos > 0) {
             token         = new Token('text', '', 0);
