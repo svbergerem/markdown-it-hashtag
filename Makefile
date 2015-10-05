@@ -1,3 +1,5 @@
+PATH        := ./node_modules/.bin:${PATH}
+
 NPM_PACKAGE := $(shell node -e 'process.stdout.write(require("./package.json").name)')
 NPM_VERSION := $(shell node -e 'process.stdout.write(require("./package.json").version)')
 
@@ -11,14 +13,14 @@ GITHUB_PROJ := https://github.com/svbergerem/${NPM_PACKAGE}
 
 
 lint:
-	./node_modules/.bin/eslint --reset .
+	eslint --reset .
 
 test: lint
-	./node_modules/.bin/mocha -R spec
+	mocha -R spec --inline-diffs
 
 coverage:
 	rm -rf coverage
-	./node_modules/.bin/istanbul cover node_modules/.bin/_mocha
+	istanbul cover node_modules/.bin/_mocha
 
 test-ci: lint
 	istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

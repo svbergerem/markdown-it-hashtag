@@ -3,8 +3,6 @@
 var path     = require('path');
 var generate = require('markdown-it-testgen');
 
-/*eslint-env mocha*/
-
 describe('markdown-it-hashtag', function () {
   var md;
 
@@ -28,10 +26,5 @@ describe('markdown-it-hashtag', function () {
       preceding:     '^|\\s'
     });
     generate(path.join(__dirname, 'fixtures/hashtag/options.txt'), md);
-  });
-
-  it('doesn\'t break normal markup', function () {
-    md.use(require('../'));
-    generate(path.join(__dirname, 'fixtures/markdown-it'), md);
   });
 });
