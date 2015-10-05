@@ -30,10 +30,10 @@ browserify:
 	mkdir dist
 	# Browserify
 	( printf "/*! ${NPM_PACKAGE} ${NPM_VERSION} ${GITHUB_PROJ} @license MIT */" ; \
-		./node_modules/.bin/browserify ./ -s markdownitHashtag \
+		browserify ./ -s markdownitHashtag \
 		) > dist/markdown-it-hashtag.js
 	# Minify
-	./node_modules/.bin/uglifyjs dist/markdown-it-hashtag.js -b beautify=false,ascii-only=true -c -m \
+	uglifyjs dist/markdown-it-hashtag.js -b beautify=false,ascii-only=true -c -m \
 		--preamble "/*! ${NPM_PACKAGE} ${NPM_VERSION} ${GITHUB_PROJ} @license MIT */" \
 		> dist/markdown-it-hashtag.min.js
 
