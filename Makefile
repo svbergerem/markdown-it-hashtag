@@ -13,7 +13,7 @@ GITHUB_PROJ := https://github.com/svbergerem/${NPM_PACKAGE}
 
 
 lint:
-	eslint --reset .
+	eslint .
 
 test: lint
 	mocha -R spec --inline-diffs
