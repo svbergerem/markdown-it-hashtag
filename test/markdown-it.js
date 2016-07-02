@@ -1,16 +1,18 @@
-'use strict';
+"use strict";
 
-var path = require('path');
-var generate = require('markdown-it-testgen');
+const path = require("path"),
+      generate = require("markdown-it-testgen"),
+      MarkdownIt = require("markdown-it"),
+      hashtagPlugin = require("../");
 
-describe('markdown-it', function () {
-  var md = require('markdown-it')({
+describe("markdown-it", function() {
+  const md = new MarkdownIt({
     html: true,
-    langPrefix: '',
+    langPrefix: "",
     typographer: true,
     linkify: true
   });
 
-  md.use(require('../'));
-  generate(path.join(__dirname, 'fixtures/vendor/markdown-it'), md);
+  md.use(hashtagPlugin);
+  generate(path.join(__dirname, "fixtures/vendor/markdown-it"), md);
 });
