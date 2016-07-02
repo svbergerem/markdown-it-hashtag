@@ -23,12 +23,14 @@
     "test": "make test"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
     "browserify": "*",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "eslint": "2.11.1",
+    "eslint": "3.0.0",
     "istanbul": "*",
-    "markdown-it": "~6.0.5",
+    "markdown-it": "~7.0.0",
     "markdown-it-testgen": "~0.1.4",
     "mocha": "*",
     "uglify-js": "*"
