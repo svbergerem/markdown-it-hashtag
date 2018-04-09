@@ -1,5 +1,3 @@
-"use strict";
-
 const path = require("path"),
       generate = require("markdown-it-testgen"),
       MarkdownIt = require("markdown-it"),

@@ -1,5 +1,3 @@
-"use strict";
-
 const p = require("path"),
       load = require("markdown-it-testgen").load,
       assert = require("chai").assert,

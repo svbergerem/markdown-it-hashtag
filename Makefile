@@ -30,10 +30,10 @@ browserify:
 	mkdir dist
 	# Browserify
 	( printf "/*! ${NPM_PACKAGE} ${NPM_VERSION} ${GITHUB_PROJ} @license MIT */" ; \
-		browserify ./ -s markdownitHashtag -t [ babelify --presets [ es2015 ] ] \
+		browserify ./ -s markdownitHashtag -t [ babelify --presets [ env ] ] \
 		) > dist/markdown-it-hashtag.js
 	# Minify
-	uglifyjs dist/markdown-it-hashtag.js -b beautify=false,ascii-only=true -c -m \
+	uglifyjs dist/markdown-it-hashtag.js -b beautify=false,ascii_only=true -c -m \
 		--preamble "/*! ${NPM_PACKAGE} ${NPM_VERSION} ${GITHUB_PROJ} @license MIT */" \
 		> dist/markdown-it-hashtag.min.js
 
