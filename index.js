@@ -1,10 +1,10 @@
-"use strict";
-
 const renderHashtagOpen = (tokens, idx) => '<a href="/tags/' + tokens[idx].content.toLowerCase() + '" class="tag">',
       renderHashtagClose = () => "</a>",
       renderHashtagText = (tokens, idx) => "#" + tokens[idx].content,
-      isLinkOpen = str => /^<a[>\s]/i.test(str),
-      isLinkClose = str => /^<\/a\s*>/i.test(str);
+      isLinkOpenRegExp = /^<a[>\s]/i,
+      isLinkCloseRegExp = /^<\/a\s*>/i,
+      isLinkOpen = (str) => isLinkOpenRegExp.test(str),
+      isLinkClose = (str) => isLinkCloseRegExp.test(str);
 
 module.exports = function hashtagPlugin(md, options) {
   const arrayReplaceAt = md.utils.arrayReplaceAt,
@@ -15,7 +15,7 @@ module.exports = function hashtagPlugin(md, options) {
           hashtagRegExp: "\\w+"
         },
         opts = typeof options === "object" ? assign(defaultOpts, options) : defaultOpts,
-        regex = new RegExp("(" + opts.preceding + ")#(" + opts.hashtagRegExp + ")", "g");
+        regex = new RegExp("(" + opts.preceding + ")#(" + opts.hashtagRegExp + ")", "gu");
 
   function hashtag(state) {
     const Token = state.Token,
